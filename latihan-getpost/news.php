@@ -1,3 +1,13 @@
+<?php
+    if (!isset($_GET["title"]) || 
+        !isset($_GET["author"]) || 
+        !isset($_GET["date"]) || 
+        !isset($_GET["content"])) {
+        header("Location: getpost.php");
+        exit;
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
