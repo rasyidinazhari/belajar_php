@@ -1,0 +1,10 @@
+.container {
+    /* width: 150px;
+    height: 150px;
+    line-height: 150px; */
+    text-align: center;
+    border: 1px solid #000;
+    border-radius: 10px;
+    float: left;
+    padding: 15px;
+}
