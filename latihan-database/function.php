@@ -2,6 +2,7 @@
 // Koneksi ke database (urutan koneksi connecting -> fetching -> Query )
 
 // 1. connecting
+// mysqli param = 1.host 2.username 3.password 4.nama database
 $conn = mysqli_connect("localhost", "root", "", "phpdasar"); 
 
 // 2. Ambil data(fetch) mahasiswa dari hasil query ada 4 metode:
@@ -10,11 +11,6 @@ $conn = mysqli_connect("localhost", "root", "", "phpdasar");
 // a. mysqli_fetch_row() -> mengembalikan array numerik
 // $mhs = mysqli_fetch_row($result);
 // var_dump($mhs[2]);
-// $result = mysqli_query($conn, "SELECT * FROM mahasiswa");
-// if (!$result) {
-//     echo mysqli_error($conn);
-//     exit;
-// }
 // b. mysqli_fetch_assoc() -> mengembalikan array asosiatif
 // $mhs = mysqli_fetch_assoc($result);
 // var_dump($mhs["nim"]);
@@ -28,6 +24,11 @@ $conn = mysqli_connect("localhost", "root", "", "phpdasar");
 // var_dump($mhs->nim);
 
 // 3.Query
+// $result = mysqli_query($conn, "SELECT * FROM mahasiswa");
+// if (!$result) {
+//     echo mysqli_error($conn);
+//     exit;
+// }
 function query($query) {
     global $conn;
     $result = mysqli_query($conn, $query);
