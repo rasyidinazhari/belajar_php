@@ -1,29 +1,13 @@
 <?php
-// Koneksi ke database
-$conn = mysqli_connect("localhost", "root", "", "phpdasar");
+// Koneksi ke database dengan hubungkan ke function.php
+require 'function.php'; 
+$mahasiswa = query("SELECT * FROM mahasiswa");
+
 // Ambil data dari tabel mahasiswa
-$result = mysqli_query($conn, "SELECT * FROM mahasiswa");
-if (!$result) {
-    echo mysqli_error($conn);
-    exit;
-}
-// Ambil data(fetch) mahasiswa dari hasil query ada 4 metode:
 
-// 1. mysqli_fetch_row() -> mengembalikan array numerik
-// $mhs = mysqli_fetch_row($result);
-// var_dump($mhs[2]);
 
-// 2. mysqli_fetch_assoc() -> mengembalikan array asosiatif
-// $mhs = mysqli_fetch_assoc($result);
-// var_dump($mhs["nim"]);
 
-// 3. mysqli_fetch_array() -> mengembalikan keduanya (numerik dan asosiatif)
-// $mhs = mysqli_fetch_array($result);
-// var_dump($mhs[0]/$mhs["nim"]);
-
-// 4. mysqli_fetch_object() -> mengembalikan objek
-
-$mahasiswa = mysqli_fetch_all($result, MYSQLI_ASSOC);
+// $mahasiswa = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
 ?>
 <!DOCTYPE html>
@@ -44,17 +28,21 @@ $mahasiswa = mysqli_fetch_all($result, MYSQLI_ASSOC);
             <th>Nama</th>
             <th>Jurusan</th>
         </tr>
+        <?php $i = 1;?>
+        <?php foreach($mahasiswa as $row):?>
         <tr>
-            <td>1</td>
+            <td><?= $i ?></td>
             <td>
                 <a href="">Ubah</a> | 
                 <a href="">Hapus</a>
             </td>
-            <td><img src="assets/img/wisnu.jpg" alt="wisnu rasyidin azhari" style="width:50px;"></td>
-            <td>2213010446</td>
-            <td>wisnu Rasyidin Azhari</td>
-            <td>Teknik Informatika</td>
+            <td><img src="assets/img/<?= $row["gambar"]?>" alt="<?= $row["nama"]?>" style="width:50px;"></td>
+            <td><?= $row["nim"]?></td>
+            <td><?= $row["nama"]?></td>
+            <td><?= $row["jurusan"]?></td>
         </tr>
+        <?php $i++ ?>
+        <?php endforeach;?>
     </table>
 </body>
 </html>
