@@ -1,3 +1,28 @@
+<?php
+require 'function.php';
+
+
+if( isset($_POST["submit"])){
+    if( tambah($_POST) > 0 ) {
+        echo "berhasil";
+        header("Location: index.php");
+        exit;
+    } else {
+        echo "
+            <script>
+                alert('Gagal menambahkan data!');
+                document.location.href = 'index.php';
+            </script>>
+        ";
+        echo "<br>";
+        echo mysqli_error($conn);
+    }
+    
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +32,10 @@
 </head>
 <body>
     <h1>Tambah Data Mahasiswa</h1>
+    <br>
+    <a href="index.php">Kembali ke Dashboard</a>
+    <br>
+    <br>
     <form action="" method="post">
         <ul>
             <li>

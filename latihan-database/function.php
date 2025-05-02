@@ -39,4 +39,26 @@ function query($query) {
     return $rows;
 }
 
+function tambah($data){
+    global $conn;
+
+    // ambil data dari tiap elemen dalam form
+    $nim = htmlspecialchars($data["nim"]);
+    $nama = htmlspecialchars($data["nama"]);
+    $email = htmlspecialchars($data["email"]);
+    $jurusan = htmlspecialchars($data["jurusan"]);
+    $gambar = htmlspecialchars($data["gambar"]);
+    // var_dump($_POST);
+
+    // query insert data
+    $query = "INSERT INTO mahasiswa
+                VALUES
+                ('', '$nama', '$nim', '$email', '$jurusan', '$gambar')";
+
+    mysqli_query($conn, $query);
+    // cek apakah data berhasil ditambahkan
+    // mysqli_affected_rows() -> mengembalikan jumlah baris yang terpengaruh oleh query
+    return mysqli_affected_rows($conn);
+}
+
 ?>
